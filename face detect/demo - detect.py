@@ -15,7 +15,7 @@ OUTPUT_SIZE_WIDTH = 775
 OUTPUT_SIZE_HEIGHT = 600
 
 
-
+import servo
 def detectLargestFace():
     #Open the first webcame device
     capture = cv2.VideoCapture(0)
@@ -88,6 +88,15 @@ def detectLargestFace():
             #If one or more faces are found, draw a rectangle around the
             #largest face present in the picture
             if maxArea > 0 :
+                print("w=",w)
+                print("x=",x)
+                print("h=",h)
+                print("y=",y)
+                xangle = 180*x/220
+                print("xangle",xangle)
+                yangle = 180*y/240
+                servo.move(2,xangle)
+                servo.move(1,yangle)
                 cv2.rectangle(resultImage,  (x-10, y-20),
                                             (x + w+10 , y + h+20),
                                             rectangleColor,2)
